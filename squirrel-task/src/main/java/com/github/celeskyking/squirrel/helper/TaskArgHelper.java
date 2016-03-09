@@ -15,7 +15,7 @@ import java.util.List;
  * DATE : 16/2/2
  * TIME : 下午5:24
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.helper
+ * PACKAGE : com.github.celeskyking.squirrel.helper
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

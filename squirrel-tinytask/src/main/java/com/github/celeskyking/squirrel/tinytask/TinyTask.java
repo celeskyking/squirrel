@@ -10,7 +10,7 @@ import java.util.concurrent.FutureTask;
  * DATE : 16/2/24
  * TIME : 上午11:56
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.tinytask
+ * PACKAGE : com.github.celeskyking.squirrel.tinytask
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
  * DATE : 16/3/3
  * TIME : 下午5:15
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.job
+ * PACKAGE : com.github.celeskyking.squirrel.job
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

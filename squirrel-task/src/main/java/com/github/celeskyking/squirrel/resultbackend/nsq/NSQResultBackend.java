@@ -1,6 +1,15 @@
 package com.github.celeskyking.squirrel.resultbackend.nsq;
 
+import com.github.brainlag.nsq.NSQConsumer;
+import com.github.brainlag.nsq.NSQMessage;
+import com.github.brainlag.nsq.NSQProducer;
+import com.github.brainlag.nsq.ServerAddress;
+import com.github.brainlag.nsq.callbacks.NSQMessageCallback;
+import com.github.brainlag.nsq.exceptions.NSQException;
+import com.github.brainlag.nsq.lookup.DefaultNSQLookup;
+import com.github.brainlag.nsq.lookup.NSQLookup;
 import com.github.celeskyking.squirrel.broker.nsq.NsqConfig;
+import com.github.celeskyking.squirrel.helper.NsqLookupHelper;
 import com.github.celeskyking.squirrel.resultbackend.IResultBackend;
 import com.github.celeskyking.squirrel.resultbackend.ResultEventListener;
 import com.github.celeskyking.squirrel.resultbackend.ResultHandler;
@@ -9,14 +18,6 @@ import com.github.celeskyking.squirrel.serialize.ITaskDecoder;
 import com.github.celeskyking.squirrel.serialize.ITaskEncoder;
 import com.github.celeskyking.squirrel.task.TaskSignature;
 import com.google.common.net.HostAndPort;
-import com.qunar.nsq.client.NSQConsumer;
-import com.qunar.nsq.client.NSQMessage;
-import com.qunar.nsq.client.NSQProducer;
-import com.qunar.nsq.client.ServerAddress;
-import com.qunar.nsq.client.callbacks.NSQMessageCallback;
-import com.qunar.nsq.client.exceptions.NSQException;
-import com.qunar.nsq.client.lookup.DefaultNSQLookup;
-import com.qunar.nsq.client.lookup.NSQLookup;
 import com.github.celeskyking.squirrel.exception.SerializeException;
 import com.github.celeskyking.squirrel.task.TaskState;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ import java.util.concurrent.TimeoutException;
  * DATE : 16-2-15
  * TIME : 下午3:55
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.resultbackend.nsq
+ * PACKAGE : com.github.celeskyking.squirrel.resultbackend.nsq
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */
@@ -59,7 +60,7 @@ public class NSQResultBackend implements IResultBackend {
         this.encoder = encoder;
         this.decoder = decoder;
         this.nsqLookup = buildNsqLookup();
-        Set<ServerAddress> addresses = nsqLookup.nodes();
+        Set<ServerAddress> addresses = NsqLookupHelper.nodes(this.nsqConfig.getLookupAddress());
         for(ServerAddress address : addresses){
             this.producer = new NSQProducer().addAddress(address.getHost(),address.getPort());
         }
@@ -112,17 +113,14 @@ public class NSQResultBackend implements IResultBackend {
     public void startConsumer(String caller) {
         this.nsqConsumer = new NSQConsumer(this.nsqLookup,
                 this.nsqConfig.getResultTopic()+"_"+caller,caller,
-                new NSQMessageCallback() {
-                    @Override
-                    public void message(NSQMessage message) {
-                        try{
-                            TaskSignature taskSignature = decoder.decode(message.getMessage());
-                            ResultHandler.newInstance(resultListener).handle(taskSignature);
-                            message.finished();
-                        }catch (Throwable throwable){
-                            logger.error("",throwable);
-                            message.requeue(1000);
-                        }
+                message -> {
+                    try{
+                        TaskSignature taskSignature = decoder.decode(message.getMessage());
+                        ResultHandler.newInstance(resultListener).handle(taskSignature);
+                        message.finished();
+                    }catch (Throwable throwable){
+                        logger.error("",throwable);
+                        message.requeue(1000);
                     }
                 });
         this.nsqConsumer.setExecutor(Executors.newCachedThreadPool());

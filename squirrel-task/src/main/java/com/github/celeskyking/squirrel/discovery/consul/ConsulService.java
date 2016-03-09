@@ -32,7 +32,7 @@ import java.util.List;
  * DATE : 16-2-14
  * TIME : 下午2:32
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.discovery
+ * PACKAGE : com.github.celeskyking.squirrel.discovery
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

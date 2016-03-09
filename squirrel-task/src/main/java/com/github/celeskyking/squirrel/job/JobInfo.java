@@ -7,7 +7,7 @@ import java.io.Serializable;
  * DATE : 16-2-22
  * TIME : 上午11:57
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.job
+ * PACKAGE : com.github.celeskyking.squirrel.job
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

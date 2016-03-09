@@ -9,7 +9,7 @@ import java.util.Map;
  * DATE : 16/1/29
  * TIME : 下午12:20
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.task
+ * PACKAGE : com.github.celeskyking.squirrel.task
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

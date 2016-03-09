@@ -1,7 +1,12 @@
 package com.github.celeskyking.squirrel.broker.nsq;
 
 import com.alibaba.fastjson.JSON;
+import com.github.brainlag.nsq.NSQConsumer;
+import com.github.brainlag.nsq.NSQProducer;
+import com.github.brainlag.nsq.ServerAddress;
+import com.github.brainlag.nsq.lookup.DefaultNSQLookup;
 import com.github.celeskyking.squirrel.broker.IBroker;
+import com.github.celeskyking.squirrel.helper.NsqLookupHelper;
 import com.github.celeskyking.squirrel.job.IJobber;
 import com.github.celeskyking.squirrel.job.JobListener;
 import com.github.celeskyking.squirrel.serialize.ITaskDecoder;
@@ -12,10 +17,6 @@ import com.github.celeskyking.squirrel.trigger.TriggerInfo;
 import com.github.celeskyking.squirrel.worker.WorkerInfo;
 import com.google.common.net.HostAndPort;
 import com.google.common.util.concurrent.MoreExecutors;
-import com.qunar.nsq.client.NSQConsumer;
-import com.qunar.nsq.client.NSQProducer;
-import com.qunar.nsq.client.ServerAddress;
-import com.qunar.nsq.client.lookup.DefaultNSQLookup;
 import com.github.celeskyking.squirrel.discovery.DiscoveryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,7 @@ import java.util.Set;
  * DATE : 16/2/5
  * TIME : 下午2:49
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.broker
+ * PACKAGE : com.github.celeskyking.squirrel.broker
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */
@@ -86,7 +87,7 @@ public class NsqBroker implements IBroker {
     @Override
     public void startConsuming(WorkerInfo workerInfo, final ITaskProcessor processor) throws Throwable {
         logger.info("nsq consumer启动...");
-        this.consumer = new NSQConsumer(buildNsqLookup(),
+        this.consumer = new NSQConsumer(this.nsqLookup,
                 this.config.getTaskTopic()+"_"+workerInfo.getWorkerName(), workerInfo.getWorkerName(),
                 new TaskMessageCallBack(this,processor));
         consumer.setExecutor(getConfig().getExecutorService());
@@ -114,7 +115,7 @@ public class NsqBroker implements IBroker {
     @Override
     public void startConsumeTriggering(IJobber jobber, JobListener listener) {
         logger.info("nsq trigger consumer启动...");
-        this.triggerConsumer = new NSQConsumer(buildNsqLookup(),
+        this.triggerConsumer = new NSQConsumer(this.nsqLookup,
                 this.config.getTriggerTopic()+"_"+jobber.getWorker()+"_"+jobber.getName(), jobber.getName(),
                 new IReceivedTriggerCallback(jobber,listener));
         triggerConsumer.start();
@@ -127,7 +128,7 @@ public class NsqBroker implements IBroker {
 
 
     private void startTriggering(){
-        Set<ServerAddress> addresses = this.nsqLookup.nodes();
+        Set<ServerAddress> addresses = NsqLookupHelper.nodes(this.config.getLookupAddress());
         for(ServerAddress address : addresses){
             this.triggerProducer = new NSQProducer().addAddress(address.getHost(),address.getPort());
         }
@@ -139,7 +140,7 @@ public class NsqBroker implements IBroker {
      * 生产者线程池
      * */
     public void startProducing(){
-        Set<ServerAddress> addresses = this.nsqLookup.nodes();
+        Set<ServerAddress> addresses = NsqLookupHelper.nodes(this.config.getLookupAddress());
         for(ServerAddress address : addresses){
             this.producer = new NSQProducer().addAddress(address.getHost(),address.getPort());
         }
@@ -159,14 +160,11 @@ public class NsqBroker implements IBroker {
     @Override
     public void onReceiveTriggerRegistry(final WorkerInfo workerInfo, final DiscoveryService discoveryService) {
         logger.info("nsq consumer启动...");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                discoveryService.distributeLock(NsqBroker.this,workerInfo);
+        new Thread(() -> {
+            discoveryService.distributeLock(NsqBroker.this,workerInfo);
 
-            }
         }).start();
-        NSQConsumer triggerConsumer = new NSQConsumer(buildNsqLookup(),
+        NSQConsumer triggerConsumer = new NSQConsumer(this.nsqLookup,
                 this.config.getTriggerTopic() + "_" + workerInfo.getWorkerName(), workerInfo.getWorkerName(),
                 new TriggerCallback(discoveryService, this, workerInfo));
         triggerConsumer.setExecutor(MoreExecutors.newDirectExecutorService());

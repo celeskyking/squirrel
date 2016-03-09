@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * DATE : 16-2-14
  * TIME : 上午11:17
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.annotation
+ * PACKAGE : com.github.celeskyking.squirrel.annotation
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

@@ -7,7 +7,7 @@ import com.github.celeskyking.squirrel.trigger.TriggerInfo;
  * DATE : 16-2-22
  * TIME : 下午2:18
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.job
+ * PACKAGE : com.github.celeskyking.squirrel.job
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  *

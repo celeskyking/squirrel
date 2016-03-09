@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
  * DATE : 16-2-19
  * TIME : 下午5:35
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.job
+ * PACKAGE : com.github.celeskyking.squirrel.job
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

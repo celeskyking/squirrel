@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * DATE : 16/2/24
  * TIME : 下午4:11
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.tinytask.workerpool
+ * PACKAGE : com.github.celeskyking.squirrel.tinytask.workerpool
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

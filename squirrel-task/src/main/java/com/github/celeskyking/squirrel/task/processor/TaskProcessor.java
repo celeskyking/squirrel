@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * DATE : 16/2/3
  * TIME : 下午5:54
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.task.processor
+ * PACKAGE : com.github.celeskyking.squirrel.task.processor
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

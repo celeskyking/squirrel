@@ -5,7 +5,7 @@ package com.github.celeskyking.squirrel;
  * DATE : 16-2-15
  * TIME : 下午1:57
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel
+ * PACKAGE : com.github.celeskyking.squirrel
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

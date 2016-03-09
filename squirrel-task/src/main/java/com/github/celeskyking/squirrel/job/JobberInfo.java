@@ -10,7 +10,7 @@ import java.util.List;
  * DATE : 16/2/21
  * TIME : 下午9:46
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.job
+ * PACKAGE : com.github.celeskyking.squirrel.job
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

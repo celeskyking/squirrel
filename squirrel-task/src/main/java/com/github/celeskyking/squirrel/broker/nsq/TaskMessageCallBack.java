@@ -1,12 +1,12 @@
 package com.github.celeskyking.squirrel.broker.nsq;
 
 import com.alibaba.fastjson.JSON;
+import com.github.brainlag.nsq.NSQMessage;
+import com.github.brainlag.nsq.callbacks.NSQMessageCallback;
 import com.github.celeskyking.squirrel.exception.RouteKeyNotMatchException;
 import com.github.celeskyking.squirrel.exception.TaskNotRunnableException;
 import com.github.celeskyking.squirrel.task.TaskSignature;
 import com.github.celeskyking.squirrel.task.processor.ITaskProcessor;
-import com.qunar.nsq.client.NSQMessage;
-import com.qunar.nsq.client.callbacks.NSQMessageCallback;
 import com.github.celeskyking.squirrel.exception.SerializeException;
 import com.github.celeskyking.squirrel.exception.TaskNotExistException;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * DATE : 16/2/5
  * TIME : 下午3:44
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.broker.nsq
+ * PACKAGE : com.github.celeskyking.squirrel.broker.nsq
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

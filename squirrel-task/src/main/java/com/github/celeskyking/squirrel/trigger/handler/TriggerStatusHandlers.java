@@ -1,9 +1,9 @@
 package com.github.celeskyking.squirrel.trigger.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.github.brainlag.nsq.NSQMessage;
 import com.github.celeskyking.squirrel.worker.WorkerInfo;
 import com.google.common.collect.Maps;
-import com.qunar.nsq.client.NSQMessage;
 import com.github.celeskyking.squirrel.broker.IBroker;
 import com.github.celeskyking.squirrel.discovery.DiscoveryService;
 import com.github.celeskyking.squirrel.trigger.CronJobNotify;
@@ -20,7 +20,7 @@ import java.util.Map;
  * DATE : 16-2-23
  * TIME : 下午12:00
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.trigger.handler
+ * PACKAGE : com.github.celeskyking.squirrel.trigger.handler
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */
@@ -39,82 +39,64 @@ public class TriggerStatusHandlers {
     private Map<TriggerState,TriggerStatusHandler> handlerMap = Maps.newHashMap();
 
     {
-        handlerMap.put(TriggerState.RUNNING, new TriggerStatusHandler() {
-            @Override
-            public void handle(NSQMessage message, TriggerInfo triggerInfo, DiscoveryService discoveryService, JobTrigger jobTrigger) {
-                TriggerInfo discoveryTriggerInfo = discoveryService.getTrigger(workerInfo.getWorkerName(),triggerInfo.getCaller(),triggerInfo.getName());
-                if(discoveryTriggerInfo != null && discoveryTriggerInfo.getSessionId()!=null){
-                    logger.info("已经注册过的job，进行更新操作。trigger:{}", JSON.toJSONString(triggerInfo));
-                    jobTrigger.removeJob(buildJob(triggerInfo));
-                    jobTrigger.addJob(buildJob(triggerInfo));
-                    registerTriggerInfo(message,triggerInfo);
-                }else{
-                    logger.info("定时任务注册,trigger:{}",JSON.toJSONString(triggerInfo));
-                    jobTrigger.addJob(buildJob(triggerInfo));
-                    registerTriggerInfo(message,triggerInfo);
-                }
-            }
-        });
-        handlerMap.put(TriggerState.PAUSING, new TriggerStatusHandler() {
-            @Override
-            public void handle(NSQMessage message, TriggerInfo triggerInfo, DiscoveryService discoveryService, JobTrigger jobTrigger) {
-                CronJobNotify jobNotify = buildJob(triggerInfo);
-                if(jobTrigger.containsJob(jobNotify)){
-                    jobTrigger.pauseJob(jobNotify);
-                    registerTriggerInfo(message,triggerInfo);
-                }else{
-                    message.requeue();
-                }
-            }
-        });
-        handlerMap.put(TriggerState.PAUSING_RECOVERY, new TriggerStatusHandler() {
-            @Override
-            public void handle(NSQMessage message, TriggerInfo triggerInfo, DiscoveryService discoveryService, JobTrigger jobTrigger) {
-                CronJobNotify jobNotify = buildJob(triggerInfo);
-                jobTrigger.addJob(jobNotify);
-                jobTrigger.pauseJob(jobNotify);
-                triggerInfo.setState(TriggerState.PAUSING.getDesc());
+        handlerMap.put(TriggerState.RUNNING, (message, triggerInfo, discoveryService1, jobTrigger1) -> {
+            TriggerInfo discoveryTriggerInfo = discoveryService1.getTrigger(workerInfo.getWorkerName(),triggerInfo.getCaller(),triggerInfo.getName());
+            if(discoveryTriggerInfo != null && discoveryTriggerInfo.getSessionId()!=null){
+                logger.info("已经注册过的job，进行更新操作。trigger:{}", JSON.toJSONString(triggerInfo));
+                jobTrigger1.removeJob(buildJob(triggerInfo));
+                jobTrigger1.addJob(buildJob(triggerInfo));
+                registerTriggerInfo(message,triggerInfo);
+            }else{
+                logger.info("定时任务注册,trigger:{}",JSON.toJSONString(triggerInfo));
+                jobTrigger1.addJob(buildJob(triggerInfo));
                 registerTriggerInfo(message,triggerInfo);
             }
         });
-        handlerMap.put(TriggerState.RESUME, new TriggerStatusHandler() {
-            @Override
-            public void handle(NSQMessage message, TriggerInfo triggerInfo, DiscoveryService discoveryService, JobTrigger jobTrigger) {
-                CronJobNotify jobNotify = buildJob(triggerInfo);
-                if(jobTrigger.containsJob(jobNotify)){
-                    jobTrigger.resumeJob(jobNotify);
-                    triggerInfo.setState(TriggerState.RUNNING.getDesc());
-                    registerTriggerInfo(message,triggerInfo);
-                }else{
-                    message.requeue();
-                }
+        handlerMap.put(TriggerState.PAUSING, (message, triggerInfo, discoveryService1, jobTrigger1) -> {
+            CronJobNotify jobNotify = buildJob(triggerInfo);
+            if(jobTrigger1.containsJob(jobNotify)){
+                jobTrigger1.pauseJob(jobNotify);
+                registerTriggerInfo(message,triggerInfo);
+            }else{
+                message.requeue();
+            }
+        });
+        handlerMap.put(TriggerState.PAUSING_RECOVERY, (message, triggerInfo, discoveryService1, jobTrigger1) -> {
+            CronJobNotify jobNotify = buildJob(triggerInfo);
+            jobTrigger1.addJob(jobNotify);
+            jobTrigger1.pauseJob(jobNotify);
+            triggerInfo.setState(TriggerState.PAUSING.getDesc());
+            registerTriggerInfo(message,triggerInfo);
+        });
+        handlerMap.put(TriggerState.RESUME, (message, triggerInfo, discoveryService1, jobTrigger1) -> {
+            CronJobNotify jobNotify = buildJob(triggerInfo);
+            if(jobTrigger1.containsJob(jobNotify)){
+                jobTrigger1.resumeJob(jobNotify);
+                triggerInfo.setState(TriggerState.RUNNING.getDesc());
+                registerTriggerInfo(message,triggerInfo);
+            }else{
+                message.requeue();
             }
         });
 
-        handlerMap.put(TriggerState.UPDATE, new TriggerStatusHandler() {
-            @Override
-            public void handle(NSQMessage message, TriggerInfo triggerInfo, DiscoveryService discoveryService, JobTrigger jobTrigger) {
-                CronJobNotify jobNotify = buildJob(triggerInfo);
-                if(jobTrigger.containsJob(jobNotify)){
-                    jobTrigger.modifyJob(jobNotify);
-                    triggerInfo.setState(TriggerState.RUNNING.getDesc());
-                    registerTriggerInfo(message,triggerInfo);
-                }else{
-                    message.requeue();
-                }
+        handlerMap.put(TriggerState.UPDATE, (message, triggerInfo, discoveryService1, jobTrigger1) -> {
+            CronJobNotify jobNotify = buildJob(triggerInfo);
+            if(jobTrigger1.containsJob(jobNotify)){
+                jobTrigger1.modifyJob(jobNotify);
+                triggerInfo.setState(TriggerState.RUNNING.getDesc());
+                registerTriggerInfo(message,triggerInfo);
+            }else{
+                message.requeue();
             }
         });
 
-        handlerMap.put(TriggerState.STOPPING, new TriggerStatusHandler() {
-            @Override
-            public void handle(NSQMessage message, TriggerInfo triggerInfo, DiscoveryService discoveryService, JobTrigger jobTrigger) {
-                CronJobNotify jobNotify = buildJob(triggerInfo);
-                if(jobTrigger.containsJob(jobNotify)){
-                    jobTrigger.removeJob(jobNotify);
-                    registerTriggerInfo(message,triggerInfo);
-                }else{
-                    message.requeue();
-                }
+        handlerMap.put(TriggerState.STOPPING, (message, triggerInfo, discoveryService1, jobTrigger1) -> {
+            CronJobNotify jobNotify = buildJob(triggerInfo);
+            if(jobTrigger1.containsJob(jobNotify)){
+                jobTrigger1.removeJob(jobNotify);
+                registerTriggerInfo(message,triggerInfo);
+            }else{
+                message.requeue();
             }
         });
     }

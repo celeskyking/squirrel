@@ -27,7 +27,7 @@ import org.apache.commons.lang3.StringUtils;
  * DATE : 16/1/31
  * TIME : 下午12:21
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel
+ * PACKAGE : com.github.celeskyking.squirrel
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

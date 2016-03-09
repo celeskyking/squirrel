@@ -61,7 +61,7 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.qunar.nsq.client</groupId>
+            <groupId>com.github.brainlag</groupId>
             <artifactId>nsq-client</artifactId>
         </dependency>
         <dependency>

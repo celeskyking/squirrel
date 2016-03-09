@@ -11,7 +11,7 @@ import java.util.Date;
  * DATE : 16/2/3
  * TIME : 下午2:59
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.task.handler
+ * PACKAGE : com.github.celeskyking.squirrel.task.handler
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

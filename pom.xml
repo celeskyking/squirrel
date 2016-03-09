@@ -73,9 +73,9 @@
                 <version>${msgpack.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.qunar.nsq.client</groupId>
+                <groupId>com.github.brainlag</groupId>
                 <artifactId>nsq-client</artifactId>
-                <version>${nsq.version}</version>
+                <version>1.0.0.RC2</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -133,8 +133,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <!--<forkMode>once</forkMode>-->
                     <!--<argLine>-Dfile.encoding=UTF-8</argLine>-->
                     <encoding>UTF-8</encoding>

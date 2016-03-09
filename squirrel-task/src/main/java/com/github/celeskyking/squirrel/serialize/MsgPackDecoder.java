@@ -11,7 +11,7 @@ import java.io.IOException;
  * DATE : 16/2/5
  * TIME : 下午2:31
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.serialize
+ * PACKAGE : com.github.celeskyking.squirrel.serialize
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

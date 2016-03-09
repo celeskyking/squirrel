@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  * DATE : 16-2-14
  * TIME : 下午2:57
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.helper
+ * PACKAGE : com.github.celeskyking.squirrel.helper
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

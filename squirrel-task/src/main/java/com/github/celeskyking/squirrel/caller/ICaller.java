@@ -12,7 +12,7 @@ import com.github.celeskyking.squirrel.task.Task;
  * DATE : 16/1/28
  * TIME : 上午10:19
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.client
+ * PACKAGE : com.github.celeskyking.squirrel.client
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  *<p>

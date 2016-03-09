@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
  * DATE : 16/2/5
  * TIME : 下午2:50
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.broker
+ * PACKAGE : com.github.celeskyking.squirrel.broker
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

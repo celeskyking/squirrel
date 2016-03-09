@@ -10,7 +10,7 @@ import com.github.celeskyking.squirrel.helper.ConsulHelper;
  * DATE : 16-2-18
  * TIME : 下午7:04
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.discovery.consul
+ * PACKAGE : com.github.celeskyking.squirrel.discovery.consul
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

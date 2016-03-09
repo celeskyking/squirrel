@@ -8,7 +8,7 @@ import com.github.celeskyking.squirrel.task.executor.ITaskExecutor;
  * DATE : 16-2-14
  * TIME : 上午10:53
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel
+ * PACKAGE : com.github.celeskyking.squirrel
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

@@ -16,7 +16,7 @@ import java.util.List;
  * DATE : 16/1/27
  * TIME : 下午3:05
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.discovery
+ * PACKAGE : com.github.celeskyking.squirrel.discovery
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  * <p>主要用于worker的负载均衡处理,sender通过服务发现的形式来查找worker,保证worker的高可用</p>

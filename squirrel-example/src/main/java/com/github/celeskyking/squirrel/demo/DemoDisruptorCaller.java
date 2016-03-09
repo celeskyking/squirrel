@@ -16,7 +16,7 @@ import com.google.common.net.HostAndPort;
  * DATE : 16-2-17
  * TIME : 下午7:05
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.demo
+ * PACKAGE : com.github.celeskyking.squirrel.demo
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */
@@ -25,11 +25,11 @@ public class DemoDisruptorCaller {
 
     public static void main(String[] args) {
         Squirrel squirrel = Squirrel.builder()
-                .withBroker("nsq://l-noahmaster2.beta.cn0.qunar.com:4161")
-                .withResultBackend("nsq://l-noahmaster2.beta.cn0.qunar.com:4161")
+                .withBroker("nsq://localhost:4161")
+                .withResultBackend("nsq://localhost:4161")
                 .build();
         DiscoveryService discoveryService = ConsulService.builder()
-                .withHostAndPort(HostAndPort.fromParts("l-qtp1.corp.beta.cn0.qunar.com",8500))
+                .withHostAndPort(HostAndPort.fromParts("localhost",8500))
                 .withToken(null)
                 .withSessionTTL("10s")
                 .build();

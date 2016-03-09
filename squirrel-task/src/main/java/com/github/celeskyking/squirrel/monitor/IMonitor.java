@@ -13,7 +13,7 @@ import java.util.List;
  * DATE : 16-2-17
  * TIME : 下午7:25
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.monitor
+ * PACKAGE : com.github.celeskyking.squirrel.monitor
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  * 该类只做为监听的一个规范接口，不做任何的实现，实现需要通过持久化来做任务调度的状态和历史记录，数据量有些大，

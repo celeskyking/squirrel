@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * DATE : 16-2-17
  * TIME : 下午6:14
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.disruptor
+ * PACKAGE : com.github.celeskyking.squirrel.disruptor
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

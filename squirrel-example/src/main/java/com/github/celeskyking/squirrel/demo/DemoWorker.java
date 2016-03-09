@@ -12,7 +12,7 @@ import com.google.common.net.HostAndPort;
  * DATE : 16-2-16
  * TIME : 下午4:53
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.demo
+ * PACKAGE : com.github.celeskyking.squirrel.demo
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */
@@ -21,11 +21,11 @@ public class DemoWorker {
     public static void main(String[] args) throws Throwable {
         String workerName = "demo-worker";
         Squirrel squirrel = Squirrel.builder()
-                .withBroker("nsq://l-noahmaster2.beta.cn0.qunar.com:4161")
-                .withResultBackend("nsq://l-noahmaster2.beta.cn0.qunar.com:4161")
+                .withBroker("nsq://localhost:4161")
+                .withResultBackend("nsq://localhost:4161")
                 .build();
         DiscoveryService discoveryService = ConsulService.builder()
-                .withHostAndPort(HostAndPort.fromParts("l-qtp1.corp.beta.cn0.qunar.com",8500))
+                .withHostAndPort(HostAndPort.fromParts("localhost",8500))
                 .withToken(null)
                 .withSessionTTL("20s")
                 .build();

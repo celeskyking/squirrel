@@ -5,7 +5,7 @@ package com.github.celeskyking.squirrel.exception;
  * DATE : 16/2/5
  * TIME : 下午12:00
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.exception
+ * PACKAGE : com.github.celeskyking.squirrel.exception
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

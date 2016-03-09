@@ -9,7 +9,7 @@ import com.github.celeskyking.squirrel.job.JobContext;
  * DATE : 16/2/29
  * TIME : 下午8:22
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.demo
+ * PACKAGE : com.github.celeskyking.squirrel
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

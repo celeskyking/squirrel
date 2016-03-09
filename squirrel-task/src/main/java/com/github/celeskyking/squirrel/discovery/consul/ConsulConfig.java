@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
  * DATE : 16-2-14
  * TIME : 下午2:33
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.discovery.consul
+ * PACKAGE : com.github.celeskyking.squirrel.discovery.consul
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

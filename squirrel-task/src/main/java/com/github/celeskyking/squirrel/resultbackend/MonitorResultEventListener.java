@@ -8,7 +8,7 @@ import com.github.celeskyking.squirrel.monitor.IMonitor;
  * DATE : 16-2-22
  * TIME : 下午2:09
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.resultbackend
+ * PACKAGE : com.github.celeskyking.squirrel.resultbackend
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

@@ -13,7 +13,7 @@ import com.github.celeskyking.squirrel.discovery.DiscoveryService;
  * DATE : 16/1/27
  * TIME : 下午12:07
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.broker
+ * PACKAGE : com.github.celeskyking.squirrel.broker
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  *

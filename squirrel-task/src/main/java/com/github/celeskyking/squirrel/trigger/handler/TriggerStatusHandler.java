@@ -1,6 +1,6 @@
 package com.github.celeskyking.squirrel.trigger.handler;
 
-import com.qunar.nsq.client.NSQMessage;
+import com.github.brainlag.nsq.NSQMessage;
 import com.github.celeskyking.squirrel.discovery.DiscoveryService;
 import com.github.celeskyking.squirrel.trigger.JobTrigger;
 import com.github.celeskyking.squirrel.trigger.TriggerInfo;
@@ -10,7 +10,7 @@ import com.github.celeskyking.squirrel.trigger.TriggerInfo;
  * DATE : 16-2-23
  * TIME : 上午11:59
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.trigger.handler
+ * PACKAGE : com.github.celeskyking.squirrel.trigger.handler
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

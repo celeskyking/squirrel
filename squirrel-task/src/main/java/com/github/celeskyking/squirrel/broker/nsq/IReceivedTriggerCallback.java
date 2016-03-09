@@ -1,8 +1,8 @@
 package com.github.celeskyking.squirrel.broker.nsq;
 
 import com.alibaba.fastjson.JSON;
-import com.qunar.nsq.client.NSQMessage;
-import com.qunar.nsq.client.callbacks.NSQMessageCallback;
+import com.github.brainlag.nsq.NSQMessage;
+import com.github.brainlag.nsq.callbacks.NSQMessageCallback;
 import com.github.celeskyking.squirrel.job.IJobber;
 import com.github.celeskyking.squirrel.job.JobContext;
 import com.github.celeskyking.squirrel.job.JobListener;
@@ -18,11 +18,11 @@ import java.util.Date;
  * DATE : 16-2-19
  * TIME : 下午4:28
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.tigger
+ * PACKAGE : com.github.celeskyking.squirrel.tigger
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */
-public class IReceivedTriggerCallback implements NSQMessageCallback{
+public class IReceivedTriggerCallback implements NSQMessageCallback {
 
     private Logger logger = LoggerFactory.getLogger(IReceivedTriggerCallback.class);
 

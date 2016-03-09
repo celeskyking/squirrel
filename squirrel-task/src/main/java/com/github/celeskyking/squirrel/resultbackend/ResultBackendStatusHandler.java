@@ -11,7 +11,7 @@ import java.util.Map;
  * DATE : 16-2-16
  * TIME : 下午2:35
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.resultbackend
+ * PACKAGE : com.github.celeskyking.squirrel.resultbackend
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

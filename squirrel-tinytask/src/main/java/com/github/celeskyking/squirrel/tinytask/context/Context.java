@@ -10,7 +10,7 @@ import java.util.Map;
  * DATE : 16/2/24
  * TIME : 上午11:45
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.tinytask.context
+ * PACKAGE : com.github.celeskyking.squirrel.tinytask.context
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

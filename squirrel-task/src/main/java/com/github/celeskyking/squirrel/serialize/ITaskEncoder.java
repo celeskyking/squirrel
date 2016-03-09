@@ -8,7 +8,7 @@ import com.github.celeskyking.squirrel.exception.SerializeException;
  * DATE : 16/2/5
  * TIME : 上午11:01
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.serialize
+ * PACKAGE : com.github.celeskyking.squirrel.serialize
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

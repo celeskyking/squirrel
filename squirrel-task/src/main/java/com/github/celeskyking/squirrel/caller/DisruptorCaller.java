@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
  * DATE : 16-2-17
  * TIME : 下午6:56
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.caller
+ * PACKAGE : com.github.celeskyking.squirrel.caller
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */

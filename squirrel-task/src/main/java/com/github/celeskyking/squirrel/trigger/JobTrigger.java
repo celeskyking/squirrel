@@ -14,7 +14,7 @@ import org.quartz.impl.triggers.CronTriggerImpl;
  * DATE : 16-2-19
  * TIME : 上午10:24
  * PROJECT : squirrel
- * PACKAGE : com.qunar.squirrel.tigger
+ * PACKAGE : com.github.celeskyking.squirrel.tigger
  *
  * @author <a href="mailto:celeskyking@163.com">tianqing.wang</a>
  */
